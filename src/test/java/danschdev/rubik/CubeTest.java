@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.hellomaven;
+package danschdev.rubik;
 
-import danschdev.rubik.Greeter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author daniel
  */
-public class GreeterTest {
+public class CubeTest {
     
-    public GreeterTest() {
+    public CubeTest() {
     }
     
     @BeforeClass
@@ -29,12 +28,12 @@ public class GreeterTest {
     }
 
     /**
-     * Test of sayHello method, of class Greeter.
+     * Test of sayHello method, of class Cube.
      */
     @Test
     public void testSayHello() {
         System.out.println("sayHello");
-        Greeter instance = new Greeter();
+        Cube instance = new Cube();
         String expResult = "Hello Barmbek!";
         String result = instance.sayHello();
         assertEquals(expResult, result);

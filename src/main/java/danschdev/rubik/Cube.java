@@ -9,7 +9,7 @@ package danschdev.rubik;
  *
  * @author daniel
  */
-public class Greeter {
+public class Cube {
     public String sayHello() {
         return "Hello Barmbek!";
     }
