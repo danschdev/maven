@@ -5,6 +5,7 @@
  */
 package com.mycompany.hellomaven;
 
+import danschdev.rubik.Greeter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
