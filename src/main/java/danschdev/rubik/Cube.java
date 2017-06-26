@@ -23,8 +23,4 @@ public class Cube {
         value[1][1][0] = 0;
         value[1][1][1] = 0;
     }
-    
-    public String sayHello() {
-        return "Hello Barmbek!";
-    }
 }

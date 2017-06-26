@@ -12,6 +12,5 @@ package danschdev.rubik;
 public class Main {
     public static void main(String[] args) {
         Cube greeter = new Cube();
-        System.out.println(greeter.sayHello());
     }
 }
