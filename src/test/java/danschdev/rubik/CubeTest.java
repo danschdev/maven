@@ -28,6 +28,17 @@ public class CubeTest {
     }
 
     /**
+     * Test of constructor method, of class Cube.
+     */
+    @Test
+    public void testConstructor() {
+        Cube instance = new Cube();
+        int expResult = 0;
+        int result = instance.value[0][0][0];
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of sayHello method, of class Cube.
      */
     @Test
