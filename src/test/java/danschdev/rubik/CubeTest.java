@@ -32,7 +32,6 @@ public class CubeTest {
      */
     @Test
     public void testSayHello() {
-        System.out.println("sayHello");
         Cube instance = new Cube();
         String expResult = "Hello Barmbek!";
         String result = instance.sayHello();

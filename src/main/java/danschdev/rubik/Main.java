@@ -9,7 +9,7 @@ package danschdev.rubik;
  *
  * @author daniel
  */
-public class HelloWorld {
+public class Main {
     public static void main(String[] args) {
         Cube greeter = new Cube();
         System.out.println(greeter.sayHello());
