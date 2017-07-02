@@ -15,20 +15,19 @@ public class Main {
     public static void main(String[] args) {
         Cube instance = new Cube();
         Report (instance);
+        turn(instance, Side.back, Side.back);
+        Report (instance);
+        turn(instance, Side.front, Side.up);
+        Report (instance);
+    }
+
+    private static void turn(Cube instance, Side from, Side to) {
         try {
-            instance.turnFromTo(Side.back, Side.back);
-        System.out.println("Turning back to back!");
+            instance.turnFromTo(from, to);
+            System.out.println("Turning from " + from + " to " + to + "!");
         } catch (IOException e) {
             System.out.println("Cannot rotate! " + e.getMessage());
         }
-        Report (instance);
-        try {
-            instance.turnFromTo(Side.front, Side.up);
-            System.out.println("Turning front to up!");
-        } catch (IOException e) {
-            System.out.println("Cannot rotate! " + e.getMessage());
-        }        
-        Report (instance);
     }
 
     private static void Report(Cube instance) {
