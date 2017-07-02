@@ -12,81 +12,56 @@ package danschdev.rubik;
 
 public class Cube {
 
-//    public int[][][] value;
-
-    private Color front;
-    private Color back;
-    private Color left;
-    private Color right;
-    private Color up;
-    private Color down;
-
     public Cube() {
-        this.front = Color.GREEN;
-        this.back = Color.YELLOW;
-        this.left = Color.PURPLE;
-        this.right = Color.BLUE;
-        this.up = Color.RED;
-        this.down = Color.PINK;
+        this.setSide(Side.front, Color.GREEN);
+        this.setSide(Side.back, Color.YELLOW);
+        this.setSide(Side.left, Color.PURPLE);
+        this.setSide(Side.right, Color.BLUE);
+        this.setSide(Side.up, Color.RED);
+        this.setSide(Side.down, Color.PINK);
+    }
+   
+    private Side opposite(Side original) {
+        switch (original) {
+            case front : return Side.back;
+            case back: return Side.front;
+            case left: return Side.right;
+            case right: return Side.left;
+            case up: return Side.down;
+            case down: return Side.up;
+        }
+        return Side.up;
+    };
+    
+    private void setSide(Side target, Color value) {
+        target.setColor(value);
+    }
+    
+    public void turnFromTo(Side start, Side target){
+        Color originalTargetColor = target.getColor();
+        this.setSide(target, start.getColor());
+        this.setSide(start, opposite(target).getColor());
+        this.setSide(opposite(target), opposite(start).getColor());
+        this.setSide(opposite(start), originalTargetColor);
     }
     
     public Color getFront() {
-        return this.front;
+        return Side.front.getColor();
     }
     public Color getBack() {
-        return this.back;
+        return Side.back.getColor();
     }
     public Color getLeft() {
-        return this.left;
+        return Side.left.getColor();
     }
     public Color getRight() {
-        return this.right;
+        return Side.right.getColor();
     }
     public Color getUp() {
-        return this.up;
+        return Side.up.getColor();
     }
     public Color getDown() {
-        return this.down;
-    }
-    
-    public void turnY() {
-        Color originalFront = this.getFront();
-        this.front = this.getRight();
-        this.right = this.getBack();
-        this.back = this.getLeft();
-        this.left = originalFront;
+        return Side.down.getColor();
     }
         
-    public void turnInverseY() {
-        Color originalFront = this.getFront();
-        this.front = this.getLeft();
-        this.right = originalFront;
-        this.back = this.getRight();
-        this.left = this.getBack();
-    }
-    
-    public void turnX() {
-        Color originalFront = this.getFront();
-        this.front = this.getUp();
-        this.up = this.getBack();
-        this.back = this.getDown();
-        this.down = originalFront;
-    }
-    
-    public void turnInverseX() {
-        Color originalFront = this.getFront();
-        this.front = this.getDown();
-        this.down = this.getBack();
-        this.back = this.getUp();
-        this.up = originalFront;
-    }
-    
-    public void turnZ() {
-        Color originalUp = this.getUp();
-        this.up = this.getLeft();
-        this.left = this.getDown();
-        this.down = this.getRight();
-        this.right = originalUp;
-    }
-    
 }

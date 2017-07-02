@@ -13,11 +13,11 @@ public class Main {
     public static void main(String[] args) {
         Cube instance = new Cube();
         Report (instance);
-        instance.turnZ();
-        System.out.println("Turning Z!");
+        instance.turnFromTo(Side.back, Side.left);
+        System.out.println("Turning back to left!");
         Report (instance);
-        instance.turnX();
-        System.out.println("Turning X!");
+        instance.turnFromTo(Side.front, Side.up);
+        System.out.println("Turning front to up!");
         Report (instance);
     }
 
