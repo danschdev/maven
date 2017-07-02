@@ -33,19 +33,8 @@ public class CubeTest {
     @Test
     public void testConstructor() {
         Cube instance = new Cube();
-        int expResult = 0;
-        int result = instance.value[0][0][0];
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of sayHello method, of class Cube.
-     */
-    @Test
-    public void testSayHello() {
-        Cube instance = new Cube();
-        String expResult = "Hello Barmbek!";
-        String result = instance.sayHello();
+        Color expResult = Color.GREEN;
+        Color result = instance.getFront();
         assertEquals(expResult, result);
     }
     
