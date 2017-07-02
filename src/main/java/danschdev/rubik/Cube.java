@@ -5,6 +5,8 @@
  */
 package danschdev.rubik;
 
+import java.io.IOException;
+
 /**
  *
  * @author daniel
@@ -37,7 +39,12 @@ public class Cube {
         target.setColor(value);
     }
     
-    public void turnFromTo(Side start, Side target){
+    public void turnFromTo(Side start, Side target)
+    throws IOException
+    {
+        if (target.equals(start) || target.equals(opposite(start))) {
+            throw new IOException("Invalid turning arguments: Turning " + start +" to " + target +"!");
+        }
         Color originalTargetColor = target.getColor();
         this.setSide(target, start.getColor());
         this.setSide(start, opposite(target).getColor());
