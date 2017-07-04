@@ -6,6 +6,7 @@
 package danschdev.rubik;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -14,11 +15,42 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         Cube instance = new Cube();
-        Report (instance);
-        turn(instance, Side.back, Side.back);
-        Report (instance);
-        turn(instance, Side.front, Side.up);
-        Report (instance);
+        Side direction = Side.up;
+        while (direction != Side.front) {
+            Report (instance);
+            direction = readSide();
+            turn(instance, Side.front, direction);
+        }
+    }
+    
+    private static Side readSide() {
+        Scanner userInput = new Scanner(System.in);
+        String direction;
+        Side value;
+        direction = userInput.next();
+        switch (direction) {
+            case "l": {
+                value = Side.left;
+                break;
+            }
+            case "r": {
+                value = Side.right;
+                break;
+            }
+            case "u": {
+                value = Side.up;
+                break;
+            }
+            case "d": {
+                value = Side.down;
+                break;
+            }
+            default: {
+                value = Side.front;
+                break;
+            }
+        }
+        return value;
     }
 
     private static void turn(Cube instance, Side from, Side to) {
