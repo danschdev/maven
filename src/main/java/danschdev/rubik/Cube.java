@@ -6,69 +6,65 @@
 package danschdev.rubik;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author daniel
  */
-
 public class Cube {
 
+    public final List<Side> sides;
+
     public Cube() {
-        this.setSide(Side.front, Color.GREEN);
-        this.setSide(Side.back, Color.YELLOW);
-        this.setSide(Side.left, Color.PURPLE);
-        this.setSide(Side.right, Color.BLUE);
-        this.setSide(Side.up, Color.RED);
-        this.setSide(Side.down, Color.PINK);
+        this.sides = new ArrayList();
+        Side side;
+        side = new Side(Direction.front, Color.GREEN);
+        this.sides.add(side);
+        side = new Side(Direction.back, Color.YELLOW);
+        this.sides.add(side);
+        this.sides.get(0).setOpposite(this.sides.get(1));
+        this.sides.get(1).setOpposite(this.sides.get(0));
+        side = new Side(Direction.left, Color.PURPLE);
+        this.sides.add(side);
+        side = new Side(Direction.right, Color.BLUE);
+        this.sides.add(side);
+        this.sides.get(2).setOpposite(this.sides.get(3));
+        this.sides.get(3).setOpposite(this.sides.get(2));
+        side = new Side(Direction.up, Color.RED);
+        this.sides.add(side);
+        side = new Side(Direction.down, Color.PINK);
+        this.sides.add(side);
+        this.sides.get(4).setOpposite(this.sides.get(5));
+        this.sides.get(5).setOpposite(this.sides.get(4));
     }
-   
-    private Side opposite(Side original) {
-        switch (original) {
-            case front : return Side.back;
-            case back: return Side.front;
-            case left: return Side.right;
-            case right: return Side.left;
-            case up: return Side.down;
-            case down: return Side.up;
-        }
-        return Side.up;
-    };
-    
-    private void setSide(Side target, Color value) {
-        target.setColor(value);
-    }
-    
+
     public void turnFromTo(Side start, Side target)
-    throws IOException
-    {
-        if (target.equals(start) || target.equals(opposite(start))) {
-            throw new IOException("Invalid turning arguments: Turning " + start +" to " + target +"!");
+            throws IOException {
+        if (target.equals(start) || target.equals(start.getOpposite())) {
+            throw new IOException("Invalid turning arguments: Turning " + start + " to " + target + "!");
         }
-        Color originalTargetColor = target.getColor();
-        this.setSide(target, start.getColor());
-        this.setSide(start, opposite(target).getColor());
-        this.setSide(opposite(target), opposite(start).getColor());
-        this.setSide(opposite(start), originalTargetColor);
-    }
-    
-    public Color getFront() {
-        return Side.front.getColor();
-    }
-    public Color getBack() {
-        return Side.back.getColor();
-    }
-    public Color getLeft() {
-        return Side.left.getColor();
-    }
-    public Color getRight() {
-        return Side.right.getColor();
-    }
-    public Color getUp() {
-        return Side.up.getColor();
-    }
-    public Color getDown() {
-        return Side.down.getColor();
-    }
+
+        Side startSide
+                = this.sides.stream().filter(p -> p.getDirection() == start.getDirection()).collect(Collectors.toList()).get(0);
+        Side targetSide
+                = this.sides.stream().filter(p -> p.getDirection() == start.getDirection()).collect(Collectors.toList()).get(1);
+        Side startOpposite
+                = startSide.getOpposite();
+        Side targetOpposite
+                = targetSide.getOpposite();
         
+        Color originalStartColor = startSide.getColor();
+        Color originalTargetColor = targetSide.getColor();
+        Color originalStartOppColor = startOpposite.getColor();
+        Color originalTargetOppColor = targetOpposite.getColor();
+        
+        target.setColor(originalStartColor);
+        startOpposite.setColor(originalTargetColor);
+        targetOpposite.setColor(originalStartOppColor);
+        start.setColor(originalTargetOppColor);
+    }
+
 }

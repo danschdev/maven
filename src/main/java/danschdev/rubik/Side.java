@@ -9,16 +9,25 @@ package danschdev.rubik;
  *
  * @author daniel
  */
-public enum Side {
-    front,
-    back,
-    left,
-    right,
-    up,
-    down;
+public class Side {
 
+    private Direction direction;
     private Color color;
+    private Side opposite;
 
+    public Side(Direction direction, Color color) {
+        this.setDirection(direction);
+        this.setColor(color);
+    }
+    
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }    
+    
     public Color getColor() {
         return color;
     }
@@ -26,4 +35,13 @@ public enum Side {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public Side getOpposite() {
+        return opposite;
+    }
+
+    public void setOpposite(Side opposite) {
+        this.opposite = opposite;
+    }
+
 }

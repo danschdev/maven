@@ -15,38 +15,33 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Cube instance = new Cube();
-        Side direction = Side.up;
-        while (direction != Side.front) {
-            Report (instance);
-            direction = readSide();
-            turn(instance, Side.front, direction);
-        }
+        Report(instance);
     }
     
-    private static Side readSide() {
+    private static Direction readSide() {
         Scanner userInput = new Scanner(System.in);
         String direction;
-        Side value;
+        Direction value;
         direction = userInput.next();
         switch (direction) {
             case "l": {
-                value = Side.left;
+                value = Direction.left;
                 break;
             }
             case "r": {
-                value = Side.right;
+                value = Direction.right;
                 break;
             }
             case "u": {
-                value = Side.up;
+                value = Direction.up;
                 break;
             }
             case "d": {
-                value = Side.down;
+                value = Direction.down;
                 break;
             }
             default: {
-                value = Side.front;
+                value = Direction.front;
                 break;
             }
         }
@@ -63,11 +58,8 @@ public class Main {
     }
 
     private static void Report(Cube instance) {
-        System.out.println ( "Front: " + instance.getFront() );
-        System.out.println ( "Right: " + instance.getRight() );
-        System.out.println ( "Left: " + instance.getLeft() );
-        System.out.println ( "Back: " + instance.getBack() );
-        System.out.println ( "Up: " + instance.getUp() );
-        System.out.println ( "Down: " + instance.getDown() );
+        instance.sides.forEach((s) -> {
+            System.out.println(s.getDirection().toString() + ": " + s.getColor().toString());
+        });
     }
 }

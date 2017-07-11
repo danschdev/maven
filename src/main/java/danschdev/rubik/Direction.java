@@ -9,11 +9,11 @@ package danschdev.rubik;
  *
  * @author daniel
  */
-public enum Color {
-    BLUE,
-    GREEN,
-    PINK,
-    PURPLE,
-    RED,
-    YELLOW;
+public enum Direction {
+    front,
+    back,
+    left,
+    right,
+    up,
+    down;
 }
