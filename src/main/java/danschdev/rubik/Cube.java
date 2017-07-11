@@ -22,23 +22,39 @@ public class Cube {
         this.sides = new ArrayList();
         Side side;
         side = new Side(Direction.front, Color.GREEN);
-        this.sides.add(side);
+        this.addSide(side);
         side = new Side(Direction.back, Color.YELLOW);
-        this.sides.add(side);
+        this.addSide(side);
         this.sides.get(0).setOpposite(this.sides.get(1));
         this.sides.get(1).setOpposite(this.sides.get(0));
         side = new Side(Direction.left, Color.PURPLE);
-        this.sides.add(side);
+        this.addSide(side);
         side = new Side(Direction.right, Color.BLUE);
-        this.sides.add(side);
+        this.addSide(side);
         this.sides.get(2).setOpposite(this.sides.get(3));
         this.sides.get(3).setOpposite(this.sides.get(2));
         side = new Side(Direction.up, Color.RED);
-        this.sides.add(side);
+        this.addSide(side);
         side = new Side(Direction.down, Color.PINK);
-        this.sides.add(side);
+        this.addSide(side);
         this.sides.get(4).setOpposite(this.sides.get(5));
         this.sides.get(5).setOpposite(this.sides.get(4));
+    }
+
+    private void addSide(Side newSide) {
+        if (canAddSide(newSide)) {
+            this.sides.add(newSide);
+        }
+    }
+
+    private boolean canAddSide(Side newSide) {
+        boolean isValid = true;
+        for (Side s : this.sides) {
+            if (s.getDirection() == newSide.getDirection()) {
+                isValid = false;
+            }
+        }
+        return isValid;
     }
 
     public void turnFromTo(Side start, Side target)
@@ -55,12 +71,12 @@ public class Cube {
                 = startSide.getOpposite();
         Side targetOpposite
                 = targetSide.getOpposite();
-        
+
         Color originalStartColor = startSide.getColor();
         Color originalTargetColor = targetSide.getColor();
         Color originalStartOppColor = startOpposite.getColor();
         Color originalTargetOppColor = targetOpposite.getColor();
-        
+
         target.setColor(originalStartColor);
         startOpposite.setColor(originalTargetColor);
         targetOpposite.setColor(originalStartOppColor);
